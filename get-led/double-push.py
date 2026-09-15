@@ -26,6 +26,12 @@ while True:
             num = 0
         print(num, dec2bin(num))
         time.sleep(0.2)
+    if GPIO.input(button2) and GPIO.input(button1):
+        num = 127
+        print(num, dec2bin(num))
+        time.sleep(0.2)
     GPIO.output(leds, dec2bin(num))
     
     
+    
+
