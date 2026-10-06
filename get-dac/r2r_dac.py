@@ -29,7 +29,7 @@ if __name__ == "__main__":
             try:
                 voltage = float(input("Введите напряжене в Вольтах: "))
                 nu = dac.set_voltage(voltage)
-                GPIO.output(dac.gpio_bits, nu)
+                GPIO.output(leds, nu)
                 print(nu)
             except ValueError:
                 

@@ -8,30 +8,33 @@ class PWM_DAC:
         
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.gpio_pin, GPIO.OUT, initial = 0)
+        global pwm
+        pwm = GPIO.PWM(self.gpio_pin, self.pwm_frequency)
     def deinit(self):
         GPIO.output(self.gpio_pin, 0)
         GPIO.cleanup()
+        pwm.stop()
     def set_voltage(self, voltage):
         if not(0.0 <= voltage <= self.dynamic_range):
-            return 0
+            print("bruh")
+        else:
+            nu = voltage/self.dynamic_range * 100
+            print(nu)
+            pwm.start(nu)
 
-        nu = int(voltage/self.dynamic_range * self.pwm_frequency)
-        return nu
+
+        return None
     
 if __name__ == "__main__":
     try:
         d = 0
         dac = PWM_DAC(12, 500, 3.183, True)
-        pwm = GPIO.PWM(dac.gpio_pin, dac.pwm_frequency)
-        pwm.start(d)
         while True:
             try:
                 voltage = float(input("Введите напряжене в Вольтах: "))
-                d = dac.set_voltage(voltage)
-                d //= 5
-                pwm.ChangeDutyCycle(d)
-                print(d)
-                GPIO.output(dac.gpio_pin, d)
+                dac.set_voltage(voltage)
+                #pwm.ChangeDutyCycle(d)
+                print("ok")
             except ValueError:
                 print("Вы не ввели число. Попробуйте еще раз")
     finally:
