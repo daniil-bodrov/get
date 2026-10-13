@@ -3,7 +3,7 @@ import time
 import RPi.GPIO as GPIO
 import signal_generator as sg
 amplitude = 3.183
-sfreq = 10
+sfreq = 50
 pfreq = 500
 t = 0
 samplfreq = 1000

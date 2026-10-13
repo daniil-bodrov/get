@@ -2,7 +2,7 @@ import pwm_dac as r2r
 import time
 import RPi.GPIO as GPIO
 import triangulation as tr
-amplitude = 3.183
+amplitude = 8.183
 sfreq = 5
 pfreq = 500
 t = 0
