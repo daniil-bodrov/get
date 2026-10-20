@@ -1,6 +1,6 @@
 
 
-
+import time
 import smbus
 
 import RPi.GPIO as GPIO
@@ -30,14 +30,14 @@ class MCP3021:
 
 if __name__ == "__main__":
     try:
-        dac = MCP3021(3.2, True)
+        dac = MCP3021(3.2)
         while True:
             try:
                 voltage = dac.get_voltage()
                 print(voltage)
                 time.sleep(0.1)
                 
-                print(nu)
+                #print(nu)
             except ValueError:
                 print("Вы не ввели число. Попробуйте еще раз")
     finally:
