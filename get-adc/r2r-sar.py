@@ -8,7 +8,7 @@ import adc_plot
 dac = r2r_adc.R2R_ADC(3.183)
 vv = []
 tv = []
-dur = 13.0
+dur = 10.0
 if __name__ == "__main__":
     try:
         start_time = time.time()

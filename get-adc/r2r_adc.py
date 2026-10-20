@@ -19,9 +19,11 @@ class R2R_ADC:
         if number < 0:
             a = [0,0,0,0,0,0,0,0]
         elif number <= 255:
-            a = [int(el) for el in reversed(bin(number)[2:].zfill(8))]
+            a = [int(el) for el in (bin(number)[2:].zfill(8))]
+            print(a)
         else:
             a = [1,1,1,1,1,1,1,1]
+        a = [0]*(len(self.bits_gpio)-len(a)) + a
         print(a)
         GPIO.output(self.bits_gpio, a)
     def gvoltage(self):
@@ -35,9 +37,10 @@ class R2R_ADC:
     def sequential_counting_adc(self):
         v = 0
         self.number_to_dac(v)
-        while not(GPIO.input(self.comp_gpio)) and v <= 255:
+        while not(GPIO.input(self.comp_gpio)) and v <= 256:
             self.number_to_dac(v)
             v += 1
+            print(v)
 
             time.sleep(0.01)
         return v
@@ -67,8 +70,8 @@ if __name__ == "__main__":
         dac = R2R_ADC(3.183)
         while True:
             try:
-                #voltage = dac.get_voltage()
-                voltage = dac.svolt()
+                voltage = dac.get_voltage()
+                #voltage = dac.svolt()
                 print(voltage)
             except ValueError:
                 print("Вы не ввели число. Попробуйте еще раз")

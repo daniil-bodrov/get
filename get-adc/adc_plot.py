@@ -20,6 +20,6 @@ def plot_sampling_period_hist(t):
     plt.title("grafic of dumb discretisation times of times on adc")
     plt.xlabel("time, s")
     plt.ylabel("times")
-    plt.xlim(0, 0.06)
+    #plt.xlim(0, 0.06)
     plt.grid(True)
     plt.show()

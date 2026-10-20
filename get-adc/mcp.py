@@ -16,7 +16,7 @@ try:
         v = dac.get_voltage()
         if v > 0:
             vv.append(v)
-            tv.append(time.time())
+            tv.append(time.time()-st)
     adc_plot.plot_voltage_vs_time(tv, vv, 3.183)
     adc_plot.plot_sampling_period_hist(tv)
 finally:
